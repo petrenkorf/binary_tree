@@ -2,12 +2,19 @@ require 'spec_helper'
 require 'binary_tree_node'
 
 RSpec.describe BinaryTreeNode do
-  it 'is initialized with value' do
-    expect(BinaryTreeNode.new(1)).to be_truthy
-  end
+  describe '.initialize' do
+    it 'is initialized with value' do
+      expect(BinaryTreeNode.new(1)).to be_truthy
+    end
 
-  it 'returns the value initialized' do
-    expect(BinaryTreeNode.new(1).value).to be_truthy
+    it 'returns the value initialized' do
+      expect(BinaryTreeNode.new(1).value).to be_truthy
+    end
+
+    it 'has right node as null node' do
+      node = BinaryTreeNode.new(1).right
+      expect(node).to be_instance_of(NullNode)
+    end
   end
 
   describe '#insert' do
@@ -19,21 +26,16 @@ RSpec.describe BinaryTreeNode do
         expect(node.right.value).to be(4) 
       end
 
-      it 'returns nil if created node' do
+      it 'returns the created node' do
         new_node = node.insert(4)
-        expect(new_node).to be_nil 
+        expect(new_node).to be_a(BinaryTreeNode) 
       end
-      #it 'returns the created node' do
-        #new_node = node.insert(4)
-        #expect(new_node).to be_a(BinaryTreeNode) 
-      #end
 
       it 'inserts recursively' do
         node.insert 5
         node.insert 6
         node.insert 7
         node.insert 8
-        pp node
         expect(node.right.value).to be(5) 
         expect(node.right.right.value).to be(6) 
         expect(node.right.right.right.value).to be(7) 
