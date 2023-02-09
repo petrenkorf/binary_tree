@@ -11,11 +11,11 @@ class BinaryTreeNode
   
   def replace_by?(node) = node.replaces?(self) ? node : self
 
-  def insert_right(value) = @right = @right.replace_by?(@right.insert(value))
+  def insert(value)
+    return @right = @right.replace_by?(@right.insert(value)) if value > @value
 
-  def insert_left(value) = @left = @left.replace_by?(@left.insert(value))
-
-  def insert(value) = (value > @value) ? insert_right(value) : insert_left(value)
+    @left = @left.replace_by?(@left.insert(value))
+  end
 end
 
 class NullNode
