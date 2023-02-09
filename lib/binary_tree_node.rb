@@ -11,10 +11,12 @@ class BinaryTreeNode
     if value > @value 
       if @right.nil?
         @right = BinaryTreeNode.new(value)
+        return nil
       else
-        @right.insert value
+        tmp = @right.insert value
+        @right = tmp unless tmp.nil?
       end
-    elsif value < @value
+    else
       if @left.nil?
         @left = BinaryTreeNode.new(value)
       else

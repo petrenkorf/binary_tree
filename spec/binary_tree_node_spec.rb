@@ -19,11 +19,21 @@ RSpec.describe BinaryTreeNode do
         expect(node.right.value).to be(4) 
       end
 
+      it 'returns nil if created node' do
+        new_node = node.insert(4)
+        expect(new_node).to be_nil 
+      end
+      #it 'returns the created node' do
+        #new_node = node.insert(4)
+        #expect(new_node).to be_a(BinaryTreeNode) 
+      #end
+
       it 'inserts recursively' do
         node.insert 5
         node.insert 6
         node.insert 7
         node.insert 8
+        pp node
         expect(node.right.value).to be(5) 
         expect(node.right.right.value).to be(6) 
         expect(node.right.right.right.value).to be(7) 
